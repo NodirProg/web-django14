@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-link active" href="{% url 'users' %}">Foydalanuvchilar</a>
+          <a class="nav-link" href="{% url 'poll:groups' %}">Guruhlar</a>
+          <a class="nav-link" href="{% url 'poll:savollar' %}">Savollar</a>
+          <a class="nav-link" href="{% url 'new:list' %}">Yangiliklar</a>
+          <a class="nav-link" href="{% url 'userprofile:register' %}">Ro'yhatdan o'tish</a>
+        </div>
+      </div>
+    </nav>
+
+     <!-- bu ko'rinishdagi istalgan templatedagi 
+     yozuv, django template tag deyiladi -->
+    <div class="container">
+      {% block content %}
+
+      {% endblock content %}
+    </div>
+    
+      <script src="{% static 'css/bootstrap.jquery.min.js' %}"></script>
+  </body>
+</html>

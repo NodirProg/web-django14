@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Savol: {{ savol.question }}</h1>
+<ul>
+    {% for choice in savol.choice_set.all %}
+    <li> <a href="{% url 'poll:check_answer' variant_id=choice.id %}">{{ choice.choice }}</a> </li>
+    {% endfor %}
+</ul>
+
+
+{% endblock content %}

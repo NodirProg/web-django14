@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="row">
+    <div class="p-5">
+        <h1>Yangiliklar <small><a href="{% url 'new:create' %}" class="btn btn-primary float-end">QO'SHISH </a></small></h1>
+    </div>
+    {% for new in news %}
+    <div class="col-md-4">
+        <div class="card">
+            <img src="{{ new.image.ulr }}" class="card-img-top" alt="{{ new.title }}">
+            <div class="card-body">
+                <h5 class="card-title">{{ new.title }}</h5>
+                <p class="card-text">{{ new.body|truncatewords_html:10 }}</p>
+                <a href="{% url 'new:detail' id=new.id %}" class="btn btn-primary">Batafsil</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+</div>
+
+
+
+{% endblock content %}

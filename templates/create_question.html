@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1> Savol qo'shish</h1>
+
+<form action="{% url 'poll:create_choice' savol_id=savol_id %}" method="post">
+    {% csrf_token %}
+    <input type="text" name="question" value="{{ name }}" required>
+    <input type="submit" value="Saqlash" >
+</form>
+
+{% endblock content %}
