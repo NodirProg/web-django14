@@ -11,7 +11,8 @@
     {% endfor %}
     
 </ol>
+{% if user.is_superuser %}
 <a href="{% url 'poll:create' %}" class="btn btn-outline-info">Savol qo'shish</a>
 <a href="{% url 'poll:tanlov_yaratish' %}" class="btn btn-outline-info">Tanlov qo'shish</a>
-
+{% endif %}
 {% endblock content %}

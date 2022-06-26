@@ -1,16 +1,51 @@
 {% extends 'base.html' %}
-
+{% load crispy_forms_tags %}
 {% block content %}
 <div class="py-5">
     <h3>{{ new.title }}</h3>
 </div>
 <div class="card p-5">
-
+    {% if new.image %}
+    <img src="{{ new.image.url }}" class="card-img-top" alt="{{ new.title }}">
+    {% endif %}
     <img src="{{ new.image.url }}" class="card-img-top" alt="{{ new.title }}">
     <div class="card-body">
         <h5 class="card-title">{{ new.title }}</h5>
-        <p class="card-text">{{ new.body }}</p>
+        <p class="card-text">{{ new.body|safe }}</p>
         <span class="small badge badge-info bg-primary">{{ new.created }}</span>
+        {% if user.is_superuser %}
+        <a href="{% url 'new:remove' id=new.id %}" class="btn btn-danger float-end">O'chirish</a>
+        {% endif %}
+        <hr>
+        <!-- comment qismi -->
+        <div class="container mt-3">
+            <h5>Izohlar</h5>
+            {% for comment in new.comments.all %}
+            <div class="card">
+                <div class="card-header">
+                {{ comment.author|default:"Anonim Foydalanuvchi" }}
+                </div>
+                <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                    <p>{{ comment.body }}.</p>
+                    <footer class="blockquote-footer">{{ comment.date|date:"d.m.Y" }} </footer>
+                </blockquote>
+                </div>
+            </div>
+            {% endfor %}
+            <div class="card mt-4">
+                <div class="card-header">
+                    Izoh qoldiring
+                </div>
+                <div class="card-body">
+                    <form action="." method="post">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <input type="submit" value="Comment" class="btn btn-outline-success mt-2">
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 

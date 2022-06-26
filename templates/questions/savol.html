@@ -9,5 +9,7 @@
     {% endfor %}
 </ul>
 
-
+{% if savol.choice_set.count < 4 and user.is_superuser %}
+<a href="{% url 'poll:savolga_tanlov' savol_id=savol.id %}">Tanlov qo'shish</a>
+{% endif %}
 {% endblock content %}

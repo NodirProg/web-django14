@@ -39,9 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # 'django.contrib.auth.models', # qoshganim
     'crispy_forms',
+    'django_summernote',
     'poll',
     'userprofile',
     'new',
+    'extra',
 ]
 
 MIDDLEWARE = [
@@ -135,3 +137,5 @@ MEDIA_ROOT = BASE_DIR / 'media'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+# SUMMERNOTE settings
